@@ -43,6 +43,13 @@ public class AndroidDeviceWebTest {
     @Test
     public void testMobileWeb() {
         driver.get("http://www.seleniumtests.com/");
+        driver.navigate().refresh();
+
+        // close newsletter subscription window if present
+        if (driver.findElements(By.cssSelector(".mc-closeModal")).size() > 0) {
+            driver.findElement(By.cssSelector(".mc-closeModal")).click();
+        }
+
         driver.findElement(By.cssSelector("a[href $= 'selenium-2-forum.html']")).click();
         assert driver.findElement(By.cssSelector(".post-title")).getText().equals("WebDriver Forum") : "unable to launch Webdriver forum";
     }

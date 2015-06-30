@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.Select;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -50,7 +51,7 @@ public class AndroidDeviceWebTest {
             driver.findElement(By.cssSelector(".mc-closeModal")).click();
         }
 
-        driver.findElement(By.cssSelector("a[href $= 'selenium-2-forum.html']")).click();
+        new Select(driver.findElement(By.id("PageList1_select"))).selectByVisibleText("WebDriver Forum");
         assert driver.findElement(By.cssSelector(".post-title")).getText().equals("WebDriver Forum") : "unable to launch Webdriver forum";
     }
 }
